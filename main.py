@@ -5,6 +5,9 @@ import random
 #Iniciando o pygame:
 pygame.init()
 
+# Quantidade de quadrados apresentados
+quadrados_iniciais = 20
+
 # Dimensões da tela em pixels:
 largura_tela = 800
 altura_tela = 600
@@ -12,9 +15,7 @@ altura_tela = 600
 # Configurando tamanho da tela:
 tela = pygame.display.set_mode((largura_tela, altura_tela))
 
-# Desenhando os retangulos
-    # Definição das cores:
-    
+
 class quadradinho():
     def __init__(self):
         self.largura = 30
@@ -27,8 +28,11 @@ class quadradinho():
     def desenhar(self, tela):
         pygame.draw.rect(tela, self.cor, self.area)
         
-classQuadradinho = quadradinho()
-classQuadradinho.desenhar(tela)
+lista = []
+for desenhar in range(0, quadrados_iniciais):        
+    classQuadradinho = quadradinho()
+    classQuadradinho.desenhar(tela)
+    lista.append(classQuadradinho)
     
 clock = pygame.time.Clock()
 
