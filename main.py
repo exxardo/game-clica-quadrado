@@ -47,13 +47,13 @@ class quadradinho():
     def desenhar(self, tela):
         pygame.draw.rect(tela, self.cor, self.area)
         
-classeQuadradinho = quadradinho()
+# q = quadradinho()
 
 lista = []
 for desenhar in range(0, quadrados_iniciais):        
-    classeQuadradinho = quadradinho()
-    classeQuadradinho.desenhar(tela)
-    lista.append(classeQuadradinho)
+    quadrado = quadradinho()
+    quadrado.desenhar(tela)
+    lista.append(quadrado)
 
 while not terminou:
     # Atualizar o desenho na tela:
@@ -70,29 +70,22 @@ while not terminou:
         # Checar evento de clique no quadradinho:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             posicao = pygame.mouse.get_pos()
-            for classeQuadradinho in lista:
-                if classeQuadradinho.area.collidepoint(posicao):
-                    lista.remove(classeQuadradinho)
+            for quadrado in lista:
+                if quadrado.area.collidepoint(posicao):
+                    lista.remove(quadrado)
                     pontos = pontos + 1
-                    
+
     conta_clocks = conta_clocks + 1
     
     if conta_clocks == 60:
-        if conta_segundos >= 0:
-            conta_segundos = conta_segundos - 1
+        conta_segundos = conta_segundos - 1
         conta_clocks = 0
-        lista.append(classeQuadradinho)
-        
-    if conta_segundos >= 0:
-        tela.fill(preto)
-        for quadradinho in lista:
-            quadradinho.desenhar(tela)
-            mostrar_tempo(conta_segundos, pontos)
-            
-    else:
-        mostrar_pontuacao_final(tela, pontos)
-        for quadradinho in lista:
-            lista.remove(classeQuadradinho)
+        quadrado = quadradinho()
+        lista.append(quadrado)
+
+    tela.fill(preto)
+    for quadrado in lista:
+        quadrado.desenhar(tela)
                              
 # Finaliza a tela:
 pygame.display.quit()
