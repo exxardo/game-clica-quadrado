@@ -46,8 +46,6 @@ class quadradinho():
         
     def desenhar(self, tela):
         pygame.draw.rect(tela, self.cor, self.area)
-        
-# q = quadradinho()
 
 lista = []
 for desenhar in range(0, quadrados_iniciais):        
@@ -78,15 +76,22 @@ while not terminou:
     conta_clocks = conta_clocks + 1
     
     if conta_clocks == 60:
-        conta_segundos = conta_segundos - 1
+        if conta_segundos >= 0:
+            conta_segundos = conta_segundos - 1
         conta_clocks = 0
         quadrado = quadradinho()
         lista.append(quadrado)
 
-    tela.fill(preto)
-    for quadrado in lista:
-        quadrado.desenhar(tela)
-                             
+    if conta_segundos >= 0:
+        tela.fill(preto)
+        for quadrado in lista:
+            quadrado.desenhar(tela)
+            mostrar_tempo(conta_segundos, pontos)
+
+    else:
+        mostrar_pontuacao_final(tela, pontos)
+        for quadrado in lista:
+            lista.remove(quadrado)
 # Finaliza a tela:
 pygame.display.quit()
 
